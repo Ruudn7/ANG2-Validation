@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'complex-form',
@@ -14,9 +14,9 @@ export class ComplexFormComponent implements OnInit {
   constructor(fb: FormBuilder) {
 
     this.complexForm = fb.group({
-      'firstName' : '',
-      'lastName': '',
-      'gender': 'Female',
+      'firstName' : [null , Validators.required],
+      'lastName': [null , Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
+      'gender': [null , Validators.required],
       'hiking' : false,
       'running' : false,
       'swimming' : false,
@@ -26,8 +26,8 @@ export class ComplexFormComponent implements OnInit {
    }
 
    submitForm(value: any): void{
-     console.log(" dane to ")
-     console.log(value);
+    //  console.log(" dane to ")
+    //  console.log(value);
    }
 
   ngOnInit() {
